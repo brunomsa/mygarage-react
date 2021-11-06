@@ -196,8 +196,8 @@ input[type="checkbox"] {
   opacity: 0.25;
 }
 
-#blank i,
-#blankWish i {
+#blank svg,
+#blankWish svg {
   font-size: 9rem;
 }
 
@@ -269,7 +269,7 @@ input[type="checkbox"] {
   margin-left: 0.2rem;
 }
 
-.attachmentName i {
+.attachmentName svg {
   font-size: 1rem;
 }
 
@@ -350,7 +350,7 @@ input[type="checkbox"] {
   opacity: 0.9;
 }
 
-.wishCarsPrice i {
+.wishCarsPrice svg {
   font-weight: bold;
   font-size: 1rem;
   display: none;
@@ -412,7 +412,7 @@ input[type="checkbox"] {
   align-items: center;
 }
 
-.detailsCarControls i {
+.detailsCarControls svg {
   font-size: 1.8rem;
 }
 
