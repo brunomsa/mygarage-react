@@ -5,7 +5,35 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   let storageCars = JSON.parse(localStorage.getItem("arrayCars"));
-  if (!storageCars) storageCars = [];
+  if (!storageCars)
+    storageCars = [
+      {
+        id: 1,
+        name: "Ford Ka",
+        year: "2012",
+        km: "68.000",
+        march: "Manual",
+        engine: "1.0",
+        fuel: "Flex",
+        power: "150Cv",
+        tractio: "Dianteira",
+        description: "Carro para uso diário",
+        favorite: true,
+      },
+      {
+        id: 2,
+        name: "Ford Ka",
+        year: "2012",
+        km: "68.000",
+        march: "Manual",
+        engine: "1.0",
+        fuel: "Flex",
+        power: "150Cv",
+        tractio: "Dianteira",
+        description: "Carro para uso diário",
+        favorite: false,
+      },
+    ];
   const [arrayCars, setArrayCars] = useState(storageCars);
 
   let storageWishes = JSON.parse(localStorage.getItem("arrayWishes"));
