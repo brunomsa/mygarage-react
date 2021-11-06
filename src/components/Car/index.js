@@ -42,7 +42,7 @@ const Car = (props) => {
             <div className="attachmentValue">{car.engine}</div>
           </div>
         </div>
-        <MdStars className="carIconFav" />
+        {car.favorite === true && <MdStars className="carIconFav" />}
       </div>
     </li>
   );

@@ -5,9 +5,11 @@ import { Car } from "../../components";
 const CarsList = (props) => {
   const { cars } = props;
   const [arrayFavCars, setArrayFavCars] = useState([]);
+  const [arrayOthrsCars, setArrayOthersCars] = useState([]);
 
   useEffect(() => {
     setArrayFavCars(() => cars.filter((c) => c.favorite === true));
+    setArrayOthersCars(() => cars.filter((c) => c.favorite === false));
   }, [cars]);
 
   const showFavList = () => {
@@ -25,7 +27,7 @@ const CarsList = (props) => {
     return (
       <ul id="allCars">
         <h2>{arrayFavCars.length > 0 ? "Outros" : "Todos"}</h2>
-        {cars.map((c) => (
+        {arrayOthrsCars.map((c) => (
           <Car key={c.id} car={c} />
         ))}
       </ul>
