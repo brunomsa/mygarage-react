@@ -1,16 +1,14 @@
 import React from "react";
-import { Header, EmptyResource } from "../../components";
+import { Header, EmptyResource, WishesList, NavBar } from "../../components";
 
 const WishesPage = (props) => {
+  const { wishes } = props;
   return (
     <>
-      <Header
-        title="Desejos"
-        subtitle="Lista de"
-        onAdd={() => console.log("Desejos")}
-      />
-      {props.wishes.length > 0 && <div>oi</div>}
-      {props.wishes.length <= 0 && <EmptyResource icon="wish" />}
+      <Header title="Desejos" subtitle="Lista de" path="/adcionar/desejo" />
+      {wishes.length > 0 && <WishesList />}
+      {wishes.length <= 0 && <EmptyResource icon="wish" />}
+      <NavBar />
     </>
   );
 };

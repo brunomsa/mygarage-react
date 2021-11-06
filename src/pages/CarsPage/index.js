@@ -1,17 +1,19 @@
 import React from "react";
-import { Header, EmptyResource, CarsList } from "../../components";
+import { Header, EmptyResource, CarsList, NavBar } from "../../components";
 
 const CarsPage = (props) => {
+  const { cars } = props;
+
   return (
-    <>
-      <Header
-        title="Garagem"
-        subtitle="Minha"
-        onAdd={() => console.log("Garagem")}
-      />
-      {props.cars.length > 0 && <CarsList />}
-      {props.cars.length <= 0 && <EmptyResource icon="car" />}
-    </>
+    <section id="garage" className="component">
+      <Header title="Garagem" subtitle="Minha" path="/adcionar/carro" />
+      {cars.length > 0 ? (
+        <CarsList cars={cars} />
+      ) : (
+        <EmptyResource icon="car" />
+      )}
+      <NavBar />
+    </section>
   );
 };
 
