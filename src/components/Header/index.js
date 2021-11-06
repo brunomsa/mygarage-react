@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const Header = (props) => {
   const { title, subtitle, path } = props;
   return (
-    <header className="componentHeader">
+    <div className="componentHeader">
       <h1 className="componentTitle">
         <div>{subtitle}</div>
         {title}
@@ -14,7 +14,7 @@ const Header = (props) => {
       <NavLink to={path}>
         <MdAdd className="addIcon" />
       </NavLink>
-    </header>
+    </div>
   );
 };
 

@@ -4,7 +4,7 @@ import { MdHome, MdFavorite } from "react-icons/md";
 
 const NavBar = () => {
   return (
-    <nav className="navBar bottom">
+    <nav className="navBar bottom primary">
       <NavLink exact to="/" activeClassName="active">
         <MdHome />
         <span>Garagem</span>
