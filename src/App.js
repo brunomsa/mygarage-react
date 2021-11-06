@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { NavBar } from "./components";
-import { CarsPage, WishesPage } from "./pages";
+import { CarsPage, WishesPage, AddCarPage, AddWishPage } from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
@@ -14,6 +13,7 @@ function App() {
   const [arrayWishes, setArrayWishes] = useState(storageWishes);
 
   const addCars = (t) => setArrayCars([...arrayCars, t]);
+  const addWishes = (w) => setArrayWishes([...arrayWishes, w]);
 
   return (
     <div className="App">
@@ -23,10 +23,15 @@ function App() {
             <CarsPage cars={arrayCars} onSubmit={addCars} />
           </Route>
           <Route path="/desejos">
-            <WishesPage wishes={arrayWishes} />
+            <WishesPage wishes={arrayWishes} onSubmit={addWishes} />
+          </Route>
+          <Route path="/adcionar/carro">
+            <AddCarPage />
+          </Route>
+          <Route path="/adcionar/desejo">
+            <AddWishPage />
           </Route>
         </Switch>
-        <NavBar />
       </Router>
     </div>
   );
