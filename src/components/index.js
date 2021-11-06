@@ -1,6 +1,5 @@
-import Garage from "./Garage";
 import Header from "./Header";
 import NavBar from "./NavBar";
-import Wishlist from "./Wishlist";
+import EmptyResource from "./EmptyResource";
 
-export { Garage, Header, NavBar, Wishlist };
+export { Header, NavBar, EmptyResource };
