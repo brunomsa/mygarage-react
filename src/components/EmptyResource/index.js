@@ -6,9 +6,18 @@ const EmptyResource = (props) => {
     <div className="componentContent">
       <div id="blank">
         <div>
-          {props.icon === "car" && <MdDirectionsCar />}
-          {props.icon === "wish" && <MdLightbulb />}
-          <p>Nenhum carro adcionado</p>
+          {props.icon === "car" && (
+            <>
+              <MdDirectionsCar />
+              <p>Nenhum carro adcionado</p>
+            </>
+          )}
+          {props.icon === "wish" && (
+            <>
+              <MdLightbulb />
+              <p>Nenhum desejo adcionado</p>
+            </>
+          )}
         </div>
       </div>
     </div>
