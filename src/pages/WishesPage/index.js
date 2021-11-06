@@ -4,12 +4,15 @@ import { Header, EmptyResource, WishesList, NavBar } from "../../components";
 const WishesPage = (props) => {
   const { wishes } = props;
   return (
-    <>
+    <section id="wishlist" className="component">
       <Header title="Desejos" subtitle="Lista de" path="/adcionar/desejo" />
-      {wishes.length > 0 && <WishesList />}
-      {wishes.length <= 0 && <EmptyResource icon="wish" />}
+      {wishes.length > 0 ? (
+        <WishesList wishes={wishes} />
+      ) : (
+        <EmptyResource icon="wish" />
+      )}
       <NavBar />
-    </>
+    </section>
   );
 };
 

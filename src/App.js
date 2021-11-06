@@ -37,7 +37,23 @@ function App() {
   const [arrayCars, setArrayCars] = useState(storageCars);
 
   let storageWishes = JSON.parse(localStorage.getItem("arrayWishes"));
-  if (!storageWishes) storageWishes = [];
+  if (!storageWishes)
+    storageWishes = [
+      {
+        id: 1,
+        name: "BMW",
+        year: "2017",
+        price: "RS 200.000",
+        lastUpdate: new Date(),
+      },
+      {
+        id: 2,
+        name: "BMW",
+        year: "2017",
+        price: "RS 200.000",
+        lastUpdate: new Date(),
+      },
+    ];
   const [arrayWishes, setArrayWishes] = useState(storageWishes);
 
   const addCars = (t) => setArrayCars([...arrayCars, t]);
