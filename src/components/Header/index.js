@@ -1,19 +1,28 @@
 import React from "react";
-import { MdAdd } from "react-icons/md";
+import { MdAdd, MdClose } from "react-icons/md";
 
 import { NavLink } from "react-router-dom";
 
 const Header = (props) => {
-  const { title, subtitle, path } = props;
+  const { title, subtitle, path, action } = props;
+
+  const renderButton = () => {
+    switch (action) {
+      case "add":
+        return <MdAdd className="addIcon" />;
+      case "close":
+        return <MdClose className="closeIcon" />;
+      default:
+        return "";
+    }
+  };
   return (
     <div className="componentHeader">
       <h1 className="componentTitle">
-        <div>{subtitle}</div>
+        {subtitle && <div>{subtitle}</div>}
         {title}
       </h1>
-      <NavLink to={path}>
-        <MdAdd className="addIcon" />
-      </NavLink>
+      <NavLink to={path}>{renderButton()}</NavLink>
     </div>
   );
 };
