@@ -12,7 +12,7 @@ const CarsList = (props) => {
     setArrayOthersCars(() => cars.filter((c) => c.favorite === false));
   }, [cars]);
 
-  const showFavList = () => {
+  const handleShowFavList = () => {
     return (
       <ul id="favCars">
         <h2>{cars.length === arrayFavCars.length ? "Todos" : "Favoritos"}</h2>
@@ -23,7 +23,7 @@ const CarsList = (props) => {
     );
   };
 
-  const showCarsList = () => {
+  const handleShowCarsList = () => {
     return (
       <ul id="allCars">
         <h2>{arrayFavCars.length > 0 ? "Outros" : "Todos"}</h2>
@@ -36,8 +36,8 @@ const CarsList = (props) => {
 
   return (
     <div className="componentContent">
-      {arrayFavCars.length > 0 && showFavList()}
-      {cars.length !== arrayFavCars.length && showCarsList()}
+      {arrayFavCars.length > 0 && handleShowFavList()}
+      {cars.length !== arrayFavCars.length && handleShowCarsList()}
     </div>
   );
 };

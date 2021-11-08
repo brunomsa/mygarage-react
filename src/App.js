@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { CarsPage, WishesPage, AddCarPage, AddWishPage } from "./pages";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { NavBar } from "./components";
 
 function App() {
   let storageCars = JSON.parse(localStorage.getItem("arrayCars"));
   if (!storageCars)
     storageCars = [
       {
-        id: 1,
+        id: "a",
         name: "Ford Ka",
         year: "2012",
         km: "68.000",
@@ -21,7 +22,7 @@ function App() {
         favorite: true,
       },
       {
-        id: 2,
+        id: "b",
         name: "Ford Ka",
         year: "2012",
         km: "68.000",
@@ -56,26 +57,32 @@ function App() {
     ];
   const [arrayWishes, setArrayWishes] = useState(storageWishes);
 
-  const addCars = (t) => setArrayCars([...arrayCars, t]);
-  const addWishes = (w) => setArrayWishes([...arrayWishes, w]);
+  const handleAddCars = (t) => {
+    // console.log(t);
+    setArrayCars([...arrayCars, t]);
+  };
+  const handleAddWishes = (w) => setArrayWishes([...arrayWishes, w]);
+
+  useEffect(() => console.log(arrayCars), [arrayCars]);
 
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route exact path="/">
-            <CarsPage cars={arrayCars} onSubmit={addCars} />
+            <CarsPage cars={arrayCars} />
           </Route>
           <Route path="/desejos">
-            <WishesPage wishes={arrayWishes} onSubmit={addWishes} />
+            <WishesPage wishes={arrayWishes} onSubmit={handleAddWishes} />
           </Route>
           <Route path="/adcionar/carro">
-            <AddCarPage />
+            <AddCarPage onSubmit={handleAddCars} />
           </Route>
           <Route path="/adcionar/desejo">
             <AddWishPage />
           </Route>
         </Switch>
+        <NavBar />
       </Router>
     </div>
   );

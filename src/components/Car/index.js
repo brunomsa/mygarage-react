@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   MdSpeed,
   MdSettingsInputComponent,
@@ -8,14 +8,37 @@ import {
 
 const Car = (props) => {
   const { car } = props;
+  const [background, setBackground] = useState();
 
-  let random = Math.floor(Math.random() * 3) + 1;
-  const iBackground = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../../../assets/img/placeholder_car${random}.png")`,
+  const handlePreviewFile = (image) => {
+    // console.log(image);
+    if (image) {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        // console.log(reader.result);
+        car.file = reader.result;
+        setBackground(`${reader.result}`);
+      };
+
+      //Leitor de arquivos para dataUrl.
+      reader.readAsDataURL(image);
+    } else {
+      let random = Math.floor(Math.random() * 3) + 1;
+      setBackground(`../../../assets/img/placeholder_car${random}.png`);
+    }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => handlePreviewFile(car.image), [car.image]);
+
   return (
-    <li className="car" style={iBackground}>
+    <li
+      className="car"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(${background})`,
+      }}
+    >
       <div className="carYear">{car.year}</div>
       <h3 className="carName">{car.name}</h3>
       <div className="carAttributes">
