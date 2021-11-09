@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Wish } from "../../components";
 
 const WishesList = (props) => {
   const { wishes } = props;
-  const [arrayWishes, setArrayWishes] = useState([]);
 
   return (
     <div className="componentContent">
