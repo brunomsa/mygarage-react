@@ -25,6 +25,7 @@ const Car = (props) => {
       reader.readAsDataURL(image);
     } else {
       let random = Math.floor(Math.random() * 3) + 1;
+      car.file = `../../../assets/img/placeholder_car${random}.png`;
       setBackground(`../../../assets/img/placeholder_car${random}.png`);
     }
   };

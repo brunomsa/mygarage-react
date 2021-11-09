@@ -17,7 +17,7 @@ function App() {
         engine: "1.0",
         fuel: "Flex",
         power: "150Cv",
-        tractio: "Dianteira",
+        traction: "Dianteira",
         description: "Carro para uso diário",
         favorite: true,
       },
@@ -57,10 +57,10 @@ function App() {
     ];
   const [wishes, setWishes] = useState(storageWishes);
 
-  const handleAddCars = (t) => {
-    // console.log(t);
-    setCars([...cars, t]);
-  };
+  const handleAddCars = (c) => setCars([...cars, c]);
+
+  const handleDeleteCar = (c) => setCars(cars.filter((car) => car.id !== c));
+
   const handleAddWishes = (w) => setWishes([...wishes, w]);
 
   useEffect(() => console.log(cars), [cars]);
@@ -72,6 +72,7 @@ function App() {
           cars={cars}
           wishes={wishes}
           onAddCar={handleAddCars}
+          onDeleteCar={handleDeleteCar}
           onAddWish={handleAddWishes}
         />
         <NavBar />

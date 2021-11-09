@@ -11,7 +11,7 @@ import {
 import { Routes, Route } from "react-router-dom";
 
 const MainRoutes = (props) => {
-  const { cars, wishes, onAddCar, onAddWish } = props;
+  const { cars, wishes, onAddCar, onDeleteCar, onAddWish } = props;
   return (
     <Routes>
       <Route path="/" element={<CarsPage cars={cars} />} />
@@ -24,7 +24,10 @@ const MainRoutes = (props) => {
         path="/adcionar/desejo"
         element={<AddWishPage onSubmit={onAddWish} />}
       />
-      <Route path="/carro/:id" element={<ViewCarPage cars={cars} />} />
+      <Route
+        path="/carro/:id"
+        element={<ViewCarPage cars={cars} onDelete={onDeleteCar} />}
+      />
     </Routes>
   );
 };
