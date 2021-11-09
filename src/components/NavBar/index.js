@@ -5,11 +5,11 @@ import { MdHome, MdFavorite } from "react-icons/md";
 const NavBar = () => {
   return (
     <nav className="navBar bottom primary">
-      <NavLink exact to="/" activeClassName="active">
+      <NavLink to="/" activeclassname="active">
         <MdHome />
         <span>Garagem</span>
       </NavLink>
-      <NavLink exact to="/desejos" activeClassName="active">
+      <NavLink to="/desejos" activeclassname="active">
         <MdFavorite />
         <span>Desejos</span>
       </NavLink>

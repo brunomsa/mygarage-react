@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 
-import { CarsPage, WishesPage, AddCarPage, AddWishPage } from "./pages";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import MainRoutes from "./routes";
 import { NavBar } from "./components";
 
 function App() {
-  let storageCars = JSON.parse(localStorage.getItem("arrayCars"));
+  let storageCars = JSON.parse(localStorage.getItem("cars"));
   if (!storageCars)
     storageCars = [
       {
@@ -35,9 +35,9 @@ function App() {
         favorite: false,
       },
     ];
-  const [arrayCars, setArrayCars] = useState(storageCars);
+  const [cars, setCars] = useState(storageCars);
 
-  let storageWishes = JSON.parse(localStorage.getItem("arrayWishes"));
+  let storageWishes = JSON.parse(localStorage.getItem("wishes"));
   if (!storageWishes)
     storageWishes = [
       {
@@ -55,33 +55,25 @@ function App() {
         lastUpdate: new Date(),
       },
     ];
-  const [arrayWishes, setArrayWishes] = useState(storageWishes);
+  const [wishes, setWishes] = useState(storageWishes);
 
   const handleAddCars = (t) => {
     // console.log(t);
-    setArrayCars([...arrayCars, t]);
+    setCars([...cars, t]);
   };
-  const handleAddWishes = (w) => setArrayWishes([...arrayWishes, w]);
+  const handleAddWishes = (w) => setWishes([...wishes, w]);
 
-  useEffect(() => console.log(arrayCars), [arrayCars]);
+  useEffect(() => console.log(cars), [cars]);
 
   return (
     <div className="App">
       <Router>
-        <Switch>
-          <Route exact path="/">
-            <CarsPage cars={arrayCars} />
-          </Route>
-          <Route path="/desejos">
-            <WishesPage wishes={arrayWishes} onSubmit={handleAddWishes} />
-          </Route>
-          <Route path="/adcionar/carro">
-            <AddCarPage onSubmit={handleAddCars} />
-          </Route>
-          <Route path="/adcionar/desejo">
-            <AddWishPage />
-          </Route>
-        </Switch>
+        <MainRoutes
+          cars={cars}
+          wishes={wishes}
+          onAddCar={handleAddCars}
+          onAddWish={handleAddWishes}
+        />
         <NavBar />
       </Router>
     </div>

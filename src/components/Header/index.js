@@ -1,7 +1,7 @@
 import React from "react";
 import { MdAdd, MdClose } from "react-icons/md";
 
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
   const { title, subtitle, path, action } = props;
@@ -22,7 +22,7 @@ const Header = (props) => {
         {subtitle && <div>{subtitle}</div>}
         {title}
       </h1>
-      <NavLink to={path}>{renderButton()}</NavLink>
+      <Link to={path}>{renderButton()}</Link>
     </div>
   );
 };

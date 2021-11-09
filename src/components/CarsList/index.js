@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { Car } from "../../components";
 
@@ -17,7 +18,9 @@ const CarsList = (props) => {
       <ul id="favCars">
         <h2>{cars.length === arrayFavCars.length ? "Todos" : "Favoritos"}</h2>
         {arrayFavCars.map((c) => (
-          <Car key={c.id} car={c} />
+          <Link key={c.id} to={`/carro/${c.id}`}>
+            <Car key={c.id} car={c} />
+          </Link>
         ))}
       </ul>
     );
@@ -28,7 +31,9 @@ const CarsList = (props) => {
       <ul id="allCars">
         <h2>{arrayFavCars.length > 0 ? "Outros" : "Todos"}</h2>
         {arrayOthrsCars.map((c) => (
-          <Car key={c.id} car={c} />
+          <Link key={c.id} to={`/carro/${c.id}`}>
+            <Car key={c.id} car={c} />
+          </Link>
         ))}
       </ul>
     );
