@@ -1,6 +1,6 @@
 import React from "react";
 import { MdFileUpload } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import uniqueId from "lodash/uniqueId";
@@ -16,7 +16,7 @@ const AddCarPage = (props) => {
         <Formik
           initialValues={{
             id: uniqueId(),
-            carName: "",
+            name: "",
             year: "",
             km: "",
             march: "",
@@ -30,16 +30,16 @@ const AddCarPage = (props) => {
             favorite: false,
           }}
           validationSchema={Yup.object({
-            carName: Yup.string().max(15, "Must be 15 characters or less"),
+            name: Yup.string().max(15, "Must be 15 characters or less"),
             // .required("Required"),
           })}
         >
           {({ values, setFieldValue }) => (
             <Form>
               <div className="field">
-                <label htmlFor="carName">Nome:</label>
-                <Field id="carName" name="carName" autoComplete="off" />
-                <ErrorMessage name="carName" />
+                <label htmlFor="name">Nome:</label>
+                <Field id="name" name="name" autoComplete="off" />
+                <ErrorMessage name="name" />
               </div>
               <div className="field">
                 <label htmlFor="year">Ano:</label>
@@ -52,7 +52,7 @@ const AddCarPage = (props) => {
               </div>
               <div className="field">
                 <label htmlFor="march">Câmbio:</label>
-                <Field id="march" name="km" autoComplete="off" />
+                <Field id="march" name="march" autoComplete="off" />
               </div>
               <div className="field">
                 <label htmlFor="engine">Motor:</label>
@@ -111,12 +111,12 @@ const AddCarPage = (props) => {
                 <Field id="favorite" name="favorite" type="checkbox" />
               </div>
               <div className="buttonGroup">
-                <NavLink exact to="/" className="button">
+                <Link to="/" className="button">
                   <button type="reset" className="button secondary">
                     Cancelar
                   </button>
-                </NavLink>
-                <NavLink exact to="/" className="button">
+                </Link>
+                <Link to="/" className="button">
                   <button
                     type="submit"
                     className="button primary"
@@ -124,7 +124,7 @@ const AddCarPage = (props) => {
                   >
                     Adicionar
                   </button>
-                </NavLink>
+                </Link>
               </div>
             </Form>
           )}
