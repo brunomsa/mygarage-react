@@ -39,6 +39,10 @@ span {
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);
 }
 
+svg {
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+}
+
 a {
   text-decoration: none;
 }
@@ -524,9 +528,10 @@ input[type="checkbox"] {
 
 /* Buttons Config -  Start */
 
-.iconClose {
+.closeIcon {
   margin-right: 1.5rem;
   font-size: 2rem;
+  color: rgba(0, 0, 0, 0.9);
 }
 
 #btnDeleteWish {
@@ -616,8 +621,12 @@ input[type="checkbox"] {
 }
 
 .field label.iconUpload {
-  font-size: 1.5rem;
+  font-size: 2rem;
   max-width: 20px;
+}
+
+.field label.iconUpload svg {
+  font-size: 1.5rem;
 }
 
 /* Forms Config -  End */
@@ -626,7 +635,7 @@ input[type="checkbox"] {
   flex: 1;
 }
 
-#inputAddDescription {
+.inputAddDescription {
   flex: 1;
   padding: 0.3rem 0.7rem;
   color: #343a40;
@@ -645,7 +654,7 @@ input[type="checkbox"] {
 }
 .primary {
   background-color: #fff;
-  color: #495057;
+  color: #495057 !;
 }
 .secondary {
   background-color: #495057;
