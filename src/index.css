@@ -418,9 +418,10 @@ input[type="checkbox"] {
 
 .detailsCarControls svg {
   font-size: 1.8rem;
+  color: #f8f9fa;
 }
 
-.detailsCarControls #btnCancelEdit {
+.detailsCarControls .btnCancelEdit {
   margin: auto 1rem;
 }
 
@@ -431,8 +432,8 @@ input[type="checkbox"] {
   padding-bottom: 1.5rem;
 }
 
-.detailsCarTitle .iconFavStar {
-  font-size: 2rem;
+.detailsCarTitle svg {
+  font-size: 3.5rem;
   color: #f8f9fa;
   margin-left: 1rem;
   padding: 1rem 0 0 1rem;
