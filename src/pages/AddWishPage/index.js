@@ -3,7 +3,6 @@ import { MdFileUpload } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import uniqueId from "lodash/uniqueId";
 
 import { Header } from "../../components";
 
@@ -15,7 +14,7 @@ const AddWishPage = (props) => {
       <div className="componentContent">
         <Formik
           initialValues={{
-            id: uniqueId(),
+            id: Math.random().toString().replace("0.", ""),
             name: "",
             year: "",
             price: "",
