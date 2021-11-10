@@ -72,12 +72,12 @@ function App() {
   };
 
   useEffect(() => {
-    console.log(cars);
+    // console.log(cars);
     localStorage.setItem("cars", JSON.stringify(cars));
   }, [cars]);
 
   useEffect(() => {
-    console.log(wishes);
+    // console.log(wishes);
     localStorage.setItem("wishes", JSON.stringify(wishes));
   }, [wishes]);
 
