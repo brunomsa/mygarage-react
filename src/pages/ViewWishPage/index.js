@@ -28,25 +28,50 @@ const ViewWishPage = (props) => {
             filename: wish.filename,
           }}
           validationSchema={Yup.object({
-            name: Yup.string().max(15, "Must be 15 characters or less"),
-            // .required("Required"),
+            name: Yup.string()
+              .max(15, "O número máximo de caracteres é 15")
+              .required("Required"),
+            year: Yup.string()
+              .max(4, "O número máximo de caracteres é 4")
+              .required("Required"),
+            price: Yup.string()
+              .max(15, "O número máximo de caracteres é 15")
+              .required("Required"),
           })}
         >
-          {({ values, setFieldValue, handleReset }) => (
+          {({ values, setFieldValue }) => (
             <Form>
               <div className="field">
                 <label htmlFor="name">Nome:</label>
-                <Field id="name" name="name" autoComplete="off" />
-                <ErrorMessage name="name" />
+                <div>
+                  <Field id="name" name="name" autoComplete="off" />
+                  <ErrorMessage name="name">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="year">Ano:</label>
-                <Field id="year" name="year" autoComplete="off" />
-                <ErrorMessage name="year" />
+                <div>
+                  <Field
+                    id="year"
+                    name="year"
+                    type="number"
+                    autoComplete="off"
+                  />
+                  <ErrorMessage name="year">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="price">Price:</label>
-                <Field id="price" name="price" autoComplete="off" />
+                <div>
+                  <Field id="price" name="price" autoComplete="off" />
+                  <ErrorMessage name="price">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field upload">
                 <label className="labelImage" htmlFor="image">

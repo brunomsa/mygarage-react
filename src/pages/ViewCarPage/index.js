@@ -16,7 +16,8 @@ import {
   MdAltRoute,
   MdStar,
 } from "react-icons/md";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const ViewCarPage = (props) => {
   const { id } = useParams();
@@ -78,17 +79,34 @@ const ViewCarPage = (props) => {
             km: car.km,
             march: car.march,
             engine: car.engine,
-            fuel: car.fuel,
-            power: car.power,
-            traction: car.traction,
-            description: car.description,
+            fuel: car.fuel || "N/A",
+            power: car.power || "N/A",
+            traction: car.traction || "N/A",
+            description: car.description || "N/A",
             image: car.image,
             file: car.file,
             filename: car.filename,
             favorite: car.favorite,
           }}
+          validationSchema={Yup.object({
+            name: Yup.string()
+              .max(15, "O número máximo de caracteres é 19")
+              .required("Campo obrigatório"),
+            year: Yup.string()
+              .max(4, "O número máximo de caracteres é 4")
+              .required("Campo obrigatório"),
+            km: Yup.string()
+              .max(11, "O número máximo de caracteres é 11")
+              .required("Campo obrigatório"),
+            march: Yup.string()
+              .max(11, "O número máximo de caracteres é 11")
+              .required("Campo obrigatório"),
+            engine: Yup.string()
+              .max(11, "O número máximo de caracteres é 11")
+              .required("Campo obrigatório"),
+          })}
         >
-          {({ values, setFieldValue, handleReset }) => (
+          {({ values, setFieldValue, handleReset, isValid }) => (
             <Form>
               <div
                 className="detailsCarHeader"
@@ -114,7 +132,7 @@ const ViewCarPage = (props) => {
                         />
                         <MdDone
                           type="submit"
-                          onClick={() => handleChange(values)}
+                          onClick={() => isValid && handleChange(values)}
                         />
                       </>
                     )}
@@ -129,6 +147,9 @@ const ViewCarPage = (props) => {
                       readOnly={showEdit ? false : true}
                       name="year"
                     />
+                    <ErrorMessage name="year">
+                      {(msg) => <div className="errorMsg">{msg}</div>}
+                    </ErrorMessage>
                     <Field
                       type="text"
                       className="detailsCarName"
@@ -136,6 +157,9 @@ const ViewCarPage = (props) => {
                       readOnly={showEdit ? false : true}
                       name="name"
                     />
+                    <ErrorMessage name="name">
+                      {(msg) => <div className="errorMsg">{msg}</div>}
+                    </ErrorMessage>
                   </div>
                   {carFavorite ? (
                     <MdStar onClick={() => handleCarFavorite(false)} />
@@ -159,6 +183,9 @@ const ViewCarPage = (props) => {
                       readOnly={showEdit ? false : true}
                       name="km"
                     />
+                    <ErrorMessage name="km">
+                      {(msg) => <div className="errorMsg">{msg}</div>}
+                    </ErrorMessage>
                   </div>
                   <div>
                     <div className="attachmentName">
@@ -172,6 +199,9 @@ const ViewCarPage = (props) => {
                       readOnly={showEdit ? false : true}
                       name="march"
                     />
+                    <ErrorMessage name="march">
+                      {(msg) => <div className="errorMsg">{msg}</div>}
+                    </ErrorMessage>
                   </div>
                   <div>
                     <div className="attachmentName">
@@ -185,6 +215,9 @@ const ViewCarPage = (props) => {
                       readOnly={showEdit ? false : true}
                       name="engine"
                     />
+                    <ErrorMessage name="engine">
+                      {(msg) => <div className="errorMsg">{msg}</div>}
+                    </ErrorMessage>
                   </div>
                   <div>
                     <div className="attachmentName">
@@ -274,6 +307,7 @@ const ViewCarPage = (props) => {
                   {showEdit && (
                     <button
                       className="button primary"
+                      disabled={!isValid}
                       onClick={() => handleChange(values)}
                     >
                       Alterar carro
