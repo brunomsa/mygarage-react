@@ -32,7 +32,7 @@ const CarsList = (props) => {
         <h2>{arrayFavCars.length > 0 ? "Outros" : "Todos"}</h2>
         {arrayOthrsCars.map((c) => (
           <Link key={c.id} to={`/carro/${c.id}`}>
-            <Car key={c.id} car={c} />
+            <Car key={c.id} car={c} cars={cars} />
           </Link>
         ))}
       </ul>

@@ -11,7 +11,7 @@ const WishesList = (props) => {
       <ul>
         {wishes.map((w) => (
           <Link key={w.id} to={`/desejo/${w.id}`}>
-            <Wish key={w.id} wish={w} />
+            <Wish key={w.id} wish={w} wishes={wishes} />
           </Link>
         ))}
       </ul>

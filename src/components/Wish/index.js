@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Wish = (props) => {
-  const { wish } = props;
+  const { wish, wishes } = props;
 
   let now = new Date();
   let lastUpdate = new Date(wish.lastUpdate);
@@ -26,6 +26,7 @@ const Wish = (props) => {
       reader.onloadend = () => {
         wish.file = reader.result;
         setBackground(`${reader.result}`);
+        localStorage.setItem("wishes", JSON.stringify(wishes));
       };
 
       //Leitor de arquivos para dataUrl.

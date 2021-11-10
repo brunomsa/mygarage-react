@@ -7,7 +7,7 @@ import {
 } from "react-icons/md";
 
 const Car = (props) => {
-  const { car } = props;
+  const { car, cars } = props;
   const [background, setBackground] = useState();
 
   const handlePreviewFile = (image) => {
@@ -17,6 +17,7 @@ const Car = (props) => {
       reader.onloadend = () => {
         car.file = reader.result;
         setBackground(`${reader.result}`);
+        localStorage.setItem("cars", JSON.stringify(cars));
       };
 
       //Leitor de arquivos para dataUrl.
