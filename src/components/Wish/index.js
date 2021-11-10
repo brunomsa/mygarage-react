@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const Wish = (props) => {
   const { wish } = props;
@@ -17,14 +17,41 @@ const Wish = (props) => {
     days = "Hoje";
   }
 
-  let random = Math.floor(Math.random() * 3) + 1;
-  const iBackground = {
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url("../../../assets/img/placeholder_car${random}.png")`,
+  const [background, setBackground] = useState();
+
+  const handlePreviewFile = (image) => {
+    if (image) {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        wish.file = reader.result;
+        setBackground(`${reader.result}`);
+      };
+
+      //Leitor de arquivos para dataUrl.
+      reader.readAsDataURL(image);
+    } else {
+      handleRandomFile();
+    }
   };
+
+  const handleRandomFile = () => {
+    let random = Math.floor(Math.random() * 3) + 1;
+    wish.file = `../../../assets/img/placeholder_car${random}.png`;
+    setBackground(`../../../assets/img/placeholder_car${random}.png`);
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => handlePreviewFile(wish.image), [wish.image]);
 
   return (
     <li className="wishCars">
-      <div className="wishCarsImg" style={iBackground}></div>
+      <div
+        className="wishCarsImg"
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(${background})`,
+        }}
+      ></div>
       <div className="wishCarsAbout">
         <div className="wishCarsYear">{wish.year}</div>
         <h3 className="wishCarsName">{wish.name}</h3>
