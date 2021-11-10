@@ -101,7 +101,7 @@ const AddCarPage = (props) => {
                   <label htmlFor="image" className="labelUpload">
                     <MdFileUpload className="iconUpload" />
                   </label>
-                  <label htmlFor="image" class="inputAddFilenameImage">
+                  <label htmlFor="image" className="inputAddFilenameImage">
                     {values.filename}
                   </label>
                 </div>

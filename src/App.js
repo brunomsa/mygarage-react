@@ -13,21 +13,31 @@ function App() {
   if (!storageWishes) storageWishes = [];
   const [wishes, setWishes] = useState(storageWishes);
 
-  const handleAddCars = (car) => setCars([...cars, car]);
+  const handleAddCar = (car) => setCars([...cars, car]);
 
   const handleDeleteCar = (id) => setCars(cars.filter((car) => car.id !== id));
 
-  const handleChangeCar = (c, id) => {
-    const i = cars.findIndex((car) => car.id === id);
-    // console.log(cars[i]);
+  const handleChangeCar = (car, id) => {
+    const i = cars.findIndex((c) => c.id === id);
     const newList = [...cars];
-    newList[i] = c;
+    newList[i] = car;
     setCars(newList);
   };
 
-  const handleAddWishes = (w) => setWishes([...wishes, w]);
+  const handleAddWish = (wish) => setWishes([...wishes, wish]);
+
+  const handleDeleteWish = (id) =>
+    setWishes(wishes.filter((wish) => wish.id !== id));
+
+  const handleChangeWish = (wish, id) => {
+    const i = wishes.findIndex((w) => w.id === id);
+    const newList = [...wishes];
+    newList[i] = wish;
+    setWishes(newList);
+  };
 
   useEffect(() => console.log(cars), [cars]);
+  useEffect(() => console.log(wishes), [wishes]);
 
   return (
     <div className="App">
@@ -35,10 +45,12 @@ function App() {
         <MainRoutes
           cars={cars}
           wishes={wishes}
-          onAddCar={handleAddCars}
+          onAddCar={handleAddCar}
           onDeleteCar={handleDeleteCar}
           onChangeCar={handleChangeCar}
-          onAddWish={handleAddWishes}
+          onAddWish={handleAddWish}
+          onDeleteWish={handleDeleteWish}
+          onChangeWish={handleChangeWish}
         />
         <NavBar />
       </Router>

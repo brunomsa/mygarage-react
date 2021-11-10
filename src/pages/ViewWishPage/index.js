@@ -1,33 +1,38 @@
 import React from "react";
 import { MdFileUpload } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import uniqueId from "lodash/uniqueId";
 
 import { Header } from "../../components";
 
-const AddWishPage = (props) => {
-  const { onSubmit } = props;
+const ViewWishPage = (props) => {
+  const { id } = useParams();
+  const { wishes, onChange, onDelete } = props;
+
+  const i = wishes.findIndex((x) => x.id === id);
+  const wish = wishes[i];
+
   return (
-    <section id="includeWish" className="component">
-      <Header title="Novo Desejo" action="close" path="/desejos" />
+    <section id="editWish" className="component">
+      <Header title="Editar Desejo" action="close" path="/desejos" />
       <div className="componentContent">
         <Formik
           initialValues={{
-            id: uniqueId(),
-            name: "",
-            year: "",
-            price: "",
-            image: null,
-            filename: "",
+            id: wish.id,
+            name: wish.name,
+            year: wish.year,
+            price: wish.price,
+            image: wish.image,
+            file: wish.file,
+            filename: wish.filename,
           }}
           validationSchema={Yup.object({
             name: Yup.string().max(15, "Must be 15 characters or less"),
             // .required("Required"),
           })}
         >
-          {({ values, setFieldValue }) => (
+          {({ values, setFieldValue, handleReset }) => (
             <Form>
               <div className="field">
                 <label htmlFor="name">Nome:</label>
@@ -40,7 +45,7 @@ const AddWishPage = (props) => {
                 <ErrorMessage name="year" />
               </div>
               <div className="field">
-                <label htmlFor="km">Price:</label>
+                <label htmlFor="price">Price:</label>
                 <Field id="price" name="price" autoComplete="off" />
               </div>
               <div className="field upload">
@@ -70,7 +75,7 @@ const AddWishPage = (props) => {
                 </div>
               </div>
               <div className="buttonGroup">
-                <Link to="/" className="button">
+                <Link to="/desejos" className="button">
                   <button type="reset" className="button secondary">
                     Cancelar
                   </button>
@@ -79,12 +84,21 @@ const AddWishPage = (props) => {
                   <button
                     type="submit"
                     className="button primary"
-                    onClick={() => onSubmit(values)}
+                    onClick={() => onChange(values, values.id)}
                   >
-                    Adicionar
+                    Alterar
                   </button>
                 </Link>
               </div>
+              <Link to="/desejos" className="button">
+                <button
+                  id="btnDeleteWish"
+                  className="button btnDelete"
+                  onClick={() => onDelete(wish.id)}
+                >
+                  Apagar desejo
+                </button>
+              </Link>
             </Form>
           )}
         </Formik>
@@ -93,4 +107,4 @@ const AddWishPage = (props) => {
   );
 };
 
-export default AddWishPage;
+export default ViewWishPage;
