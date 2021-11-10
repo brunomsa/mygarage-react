@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 
 import MainRoutes from "./routes";
@@ -35,9 +35,6 @@ function App() {
     newList[i] = wish;
     setWishes(newList);
   };
-
-  useEffect(() => console.log(cars), [cars]);
-  useEffect(() => console.log(wishes), [wishes]);
 
   return (
     <div className="App">
