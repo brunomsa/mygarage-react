@@ -22,10 +22,14 @@ const Car = (props) => {
       //Leitor de arquivos para dataUrl.
       reader.readAsDataURL(image);
     } else {
-      let random = Math.floor(Math.random() * 3) + 1;
-      car.file = `../../../assets/img/placeholder_car${random}.png`;
-      setBackground(`../../../assets/img/placeholder_car${random}.png`);
+      handleRandomFile();
     }
+  };
+
+  const handleRandomFile = () => {
+    let random = Math.floor(Math.random() * 3) + 1;
+    car.file = `../../../assets/img/placeholder_car${random}.png`;
+    setBackground(`../../../assets/img/placeholder_car${random}.png`);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
