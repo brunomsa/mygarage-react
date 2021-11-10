@@ -30,33 +30,74 @@ const AddCarPage = (props) => {
             favorite: false,
           }}
           validationSchema={Yup.object({
-            name: Yup.string().max(15, "Must be 15 characters or less"),
-            // .required("Required"),
+            name: Yup.string()
+              .max(15, "O número máximo de caracteres é 19")
+              .required("Campo obrigatório"),
+            year: Yup.string()
+              .max(4, "O número máximo de caracteres é 4")
+              .required("Campo obrigatório"),
+            km: Yup.string()
+              .max(11, "O número máximo de caracteres é 11")
+              .required("Campo obrigatório"),
+            march: Yup.string()
+              .max(11, "O número máximo de caracteres é 11")
+              .required("Campo obrigatório"),
+            engine: Yup.string()
+              .max(11, "O número máximo de caracteres é 11")
+              .required("Campo obrigatório"),
           })}
         >
-          {({ values, setFieldValue }) => (
+          {({ values, setFieldValue, isValid }) => (
             <Form>
               <div className="field">
                 <label htmlFor="name">Nome:</label>
-                <Field id="name" name="name" autoComplete="off" />
-                <ErrorMessage name="name" />
+                <div>
+                  <Field id="name" name="name" autoComplete="off" />
+                  <ErrorMessage name="name">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="year">Ano:</label>
-                <Field id="year" name="year" autoComplete="off" />
-                <ErrorMessage name="year" />
+                <div>
+                  <Field
+                    id="year"
+                    name="year"
+                    type="number"
+                    autoComplete="off"
+                  />
+                  <ErrorMessage name="year">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="km">Km:</label>
-                <Field id="km" name="km" autoComplete="off" />
+                <div>
+                  <Field id="km" name="km" autoComplete="off" />
+                  <ErrorMessage name="km">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="march">Câmbio:</label>
-                <Field id="march" name="march" autoComplete="off" />
+                <div>
+                  <Field id="march" name="march" autoComplete="off" />
+                  <ErrorMessage name="march">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="engine">Motor:</label>
-                <Field id="engine" name="engine" autoComplete="off" />
+                <div>
+                  <Field id="engine" name="engine" autoComplete="off" />
+                  <ErrorMessage name="engine">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="fuel">Combustível:</label>
@@ -73,7 +114,6 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="description">Descrição:</label>
                 <Field
-                  id="description"
                   name="description"
                   as="textarea"
                   rows="3"
@@ -108,7 +148,7 @@ const AddCarPage = (props) => {
               </div>
               <div className="field fav end">
                 <label htmlFor="favorite">Marcar como favorito:</label>
-                <Field id="favorite" name="favorite" type="checkbox" />
+                <Field name="favorite" type="checkbox" />
               </div>
               <div className="buttonGroup">
                 <Link to="/" className="button">
@@ -120,6 +160,7 @@ const AddCarPage = (props) => {
                   <button
                     type="submit"
                     className="button primary"
+                    disabled={!isValid || !values.name}
                     onClick={() => onSubmit(values)}
                   >
                     Adicionar

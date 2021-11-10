@@ -16,7 +16,7 @@ import {
   MdAltRoute,
   MdStar,
 } from "react-icons/md";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 
 const ViewCarPage = (props) => {
   const { id } = useParams();

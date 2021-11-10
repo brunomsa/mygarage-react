@@ -631,6 +631,12 @@ label.labelUpload {
   margin-right: 0.5rem;
 }
 
+.errorMsg {
+  display: block;
+  color: #c00101;
+  font-size: 12px;
+}
+
 /* Forms Config -  End */
 
 .inputAddFilenameImage {
