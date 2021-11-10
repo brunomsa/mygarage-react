@@ -6,60 +6,24 @@ import { NavBar } from "./components";
 
 function App() {
   let storageCars = JSON.parse(localStorage.getItem("cars"));
-  if (!storageCars)
-    storageCars = [
-      {
-        id: "a",
-        name: "Ford Ka",
-        year: "2012",
-        km: "68.000",
-        march: "Manual",
-        engine: "1.0",
-        fuel: "Flex",
-        power: "150Cv",
-        traction: "Dianteira",
-        description: "Carro para uso diário",
-        favorite: true,
-      },
-      {
-        id: "b",
-        name: "Ford Ka",
-        year: "2012",
-        km: "68.000",
-        march: "Manual",
-        engine: "1.0",
-        fuel: "Flex",
-        power: "150Cv",
-        tractio: "Dianteira",
-        description: "Carro para uso diário",
-        favorite: false,
-      },
-    ];
+  if (!storageCars) storageCars = [];
   const [cars, setCars] = useState(storageCars);
 
   let storageWishes = JSON.parse(localStorage.getItem("wishes"));
-  if (!storageWishes)
-    storageWishes = [
-      {
-        id: 1,
-        name: "BMW",
-        year: "2017",
-        price: "RS 200.000",
-        lastUpdate: new Date(),
-      },
-      {
-        id: 2,
-        name: "BMW",
-        year: "2017",
-        price: "RS 200.000",
-        lastUpdate: new Date(),
-      },
-    ];
+  if (!storageWishes) storageWishes = [];
   const [wishes, setWishes] = useState(storageWishes);
 
-  const handleAddCars = (c) => setCars([...cars, c]);
+  const handleAddCars = (car) => setCars([...cars, car]);
 
-  const handleDeleteCar = (c) => setCars(cars.filter((car) => car.id !== c));
+  const handleDeleteCar = (id) => setCars(cars.filter((car) => car.id !== id));
+
+  const handleChangeCar = (c, id) => {
+    const i = cars.findIndex((car) => car.id === id);
+    // console.log(cars[i]);
+    const newList = [...cars];
+    newList[i] = c;
+    setCars(newList);
+  };
 
   const handleAddWishes = (w) => setWishes([...wishes, w]);
 
@@ -73,6 +37,7 @@ function App() {
           wishes={wishes}
           onAddCar={handleAddCars}
           onDeleteCar={handleDeleteCar}
+          onChangeCar={handleChangeCar}
           onAddWish={handleAddWishes}
         />
         <NavBar />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -21,13 +21,51 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 
 const ViewCarPage = (props) => {
   const { id } = useParams();
-  const { cars, onDelete } = props;
+  const { cars, onChange, onDelete } = props;
 
-  let i = cars.findIndex((x) => x.id === id);
+  const i = cars.findIndex((x) => x.id === id);
   const car = cars[i];
 
+  const [showEdit, setShowEdit] = useState(false);
+  const [carFavorite, setCarFavorite] = useState(car.favorite);
+  const [background, setBackground] = useState();
+
+  const handlePreviewFile = (image) => {
+    if (image) {
+      let reader = new FileReader();
+
+      reader.onloadend = () => {
+        car.file = reader.result;
+        setBackground(`${reader.result}`);
+      };
+
+      //Leitor de arquivos para dataUrl.
+      reader.readAsDataURL(image);
+    } else {
+      let random = Math.floor(Math.random() * 3) + 1;
+      car.file = `../../../assets/img/placeholder_car${random}.png`;
+      setBackground(`../../../assets/img/placeholder_car${random}.png`);
+    }
+  };
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => handlePreviewFile(car.image), [car.image]);
+
+  const handleCarFavorite = (boolean) => {
+    car.favorite = boolean;
+    setCarFavorite(boolean);
+  };
+
+  const handleChange = (car) => {
+    setShowEdit(false);
+    onChange(car, car.id);
+  };
+
   return (
-    <section id="detailsCar" className="component">
+    <section
+      id="detailsCar"
+      className={`component ${showEdit ? "editMode" : ""}`}
+    >
       <div className="componentContent">
         <Formik
           initialValues={{
@@ -48,11 +86,11 @@ const ViewCarPage = (props) => {
           }}
         >
           {({ values, setFieldValue }) => (
-            <Form id="formEditCar">
+            <Form>
               <div
                 className="detailsCarHeader"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(${car.file})`,
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(${values.file})`,
                 }}
               >
                 <div className="detailsCarControls">
@@ -60,31 +98,44 @@ const ViewCarPage = (props) => {
                     <MdArrowBack />
                   </Link>
                   <div>
-                    <MdEdit />
-                    <MdClose className="btnCancelEdit hidden" />
-                    <MdDone className="hidden" />
+                    {!showEdit ? (
+                      <MdEdit onClick={() => setShowEdit(true)} />
+                    ) : (
+                      <>
+                        <MdClose
+                          onClick={() => setShowEdit(false)}
+                          className="btnCancelEdit"
+                        />
+                        <MdDone
+                          type="submit"
+                          onClick={() => handleChange(values)}
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
                 <div className="detailsCarTitle">
                   <div>
                     <Field
-                      id="inputEditYear"
                       type="text"
                       className="detailsCarYear"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="year"
                     />
                     <Field
-                      id="inputEditName"
                       type="text"
                       className="detailsCarName"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="name"
                     />
                   </div>
-                  {car.favorite ? <MdStar /> : <MdStarBorder />}
+                  {carFavorite ? (
+                    <MdStar onClick={() => handleCarFavorite(false)} />
+                  ) : (
+                    <MdStarBorder onClick={() => handleCarFavorite(true)} />
+                  )}
                 </div>
               </div>
               <div className="detailsCarContent">
@@ -96,11 +147,10 @@ const ViewCarPage = (props) => {
                       <div>Km</div>
                     </div>
                     <Field
-                      id="inputEditKm"
                       type="text"
                       className="attachmentValue"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="km"
                     />
                   </div>
@@ -110,11 +160,10 @@ const ViewCarPage = (props) => {
                       <div>Câmbio</div>
                     </div>
                     <Field
-                      id="inputEditMarch"
                       type="text"
                       className="attachmentValue"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="march"
                     />
                   </div>
@@ -124,11 +173,10 @@ const ViewCarPage = (props) => {
                       <div>Motor</div>
                     </div>
                     <Field
-                      id="inputEditEngine"
                       type="text"
                       className="attachmentValue"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="engine"
                     />
                   </div>
@@ -138,11 +186,10 @@ const ViewCarPage = (props) => {
                       <div>Combustível</div>
                     </div>
                     <Field
-                      id="inputEditFuel"
                       type="text"
                       className="attachmentValue"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="fuel"
                     />
                   </div>
@@ -152,11 +199,10 @@ const ViewCarPage = (props) => {
                       <div>Potência</div>
                     </div>
                     <Field
-                      id="inputEditPower"
                       type="text"
                       className="attachmentValue"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="power"
                     />
                   </div>
@@ -166,11 +212,10 @@ const ViewCarPage = (props) => {
                       <div>Tração</div>
                     </div>
                     <Field
-                      id="inputEditTraction"
                       className="attachmentValue"
                       type="text"
                       autoComplete="off"
-                      readOnly
+                      readOnly={showEdit ? false : true}
                       name="traction"
                     />
                   </div>
@@ -178,51 +223,56 @@ const ViewCarPage = (props) => {
                 <div className="detailsCarDescription">
                   <h2>Descrição</h2>
                   <Field
-                    id="inputEditDescription"
+                    className="inputEditDescription"
                     rows="2"
-                    readOnly
+                    readOnly={showEdit ? false : true}
                     as="textarea"
                     name="description"
                   />
                 </div>
-                <div className="detailsCarImage hidden">
-                  <label htmlFor="inputEditImage">
-                    <h2>Plano de fundo</h2>
-                  </label>
-                  <input
-                    id="inputEditImage"
-                    type="file"
-                    accept=".jpg, .jpeg, .png"
-                    className="hidden"
-                    onChange={(e) => {
-                      setFieldValue("image", e.target.files[0]);
-                      setFieldValue(
-                        "filename",
-                        e.target.files[0] ? e.target.files[0].name : ""
-                      );
-                    }}
-                  />
-                  <div>
-                    <MdFileUpload className="iconUpload" />
-                    <label
-                      htmlFor="inputEditImage"
-                      id="inputEditFilenameImage"
-                    ></label>
+                {showEdit && (
+                  <div className="detailsCarImage ">
+                    <label htmlFor="image">
+                      <h2>Plano de fundo</h2>
+                    </label>
+                    <input
+                      id="image"
+                      type="file"
+                      accept=".jpg, .jpeg, .png"
+                      className="hidden"
+                      onChange={(e) => {
+                        setFieldValue("image", e.target.files[0]);
+                        setFieldValue(
+                          "filename",
+                          e.target.files[0] ? e.target.files[0].name : ""
+                        );
+                      }}
+                    />
+                    <div>
+                      <label htmlFor="image">
+                        <MdFileUpload className="iconUpload" />
+                      </label>
+                      <label htmlFor="image">{values.filename}</label>
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="buttonGroup">
                   <Link to="/" className="button">
                     <button
-                      id="btnDeleteCar"
                       className="button btnDelete"
                       onClick={() => onDelete(car.id)}
                     >
                       Apagar carro
                     </button>
                   </Link>
-                  <button id="btnDoneEdit2" className="button primary hidden">
-                    Alterar carro
-                  </button>
+                  {showEdit && (
+                    <button
+                      className="button primary"
+                      onClick={() => handleChange(values)}
+                    >
+                      Alterar carro
+                    </button>
+                  )}
                 </div>
               </div>
             </Form>

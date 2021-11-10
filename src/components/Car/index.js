@@ -11,12 +11,10 @@ const Car = (props) => {
   const [background, setBackground] = useState();
 
   const handlePreviewFile = (image) => {
-    // console.log(image);
     if (image) {
       let reader = new FileReader();
 
       reader.onloadend = () => {
-        // console.log(reader.result);
         car.file = reader.result;
         setBackground(`${reader.result}`);
       };

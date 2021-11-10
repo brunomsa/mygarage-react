@@ -11,7 +11,7 @@ import {
 import { Routes, Route } from "react-router-dom";
 
 const MainRoutes = (props) => {
-  const { cars, wishes, onAddCar, onDeleteCar, onAddWish } = props;
+  const { cars, wishes, onAddCar, onDeleteCar, onChangeCar, onAddWish } = props;
   return (
     <Routes>
       <Route path="/" element={<CarsPage cars={cars} />} />
@@ -26,7 +26,13 @@ const MainRoutes = (props) => {
       />
       <Route
         path="/carro/:id"
-        element={<ViewCarPage cars={cars} onDelete={onDeleteCar} />}
+        element={
+          <ViewCarPage
+            cars={cars}
+            onChange={onChangeCar}
+            onDelete={onDeleteCar}
+          />
+        }
       />
     </Routes>
   );
