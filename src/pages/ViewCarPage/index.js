@@ -42,10 +42,14 @@ const ViewCarPage = (props) => {
       //Leitor de arquivos para dataUrl.
       reader.readAsDataURL(image);
     } else {
-      let random = Math.floor(Math.random() * 3) + 1;
-      car.file = `../../../assets/img/placeholder_car${random}.png`;
-      setBackground(`../../../assets/img/placeholder_car${random}.png`);
+      handleRandomFile();
     }
+  };
+
+  const handleRandomFile = () => {
+    let random = Math.floor(Math.random() * 3) + 1;
+    car.file = `../../../assets/img/placeholder_car${random}.png`;
+    setBackground(`../../../assets/img/placeholder_car${random}.png`);
   };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -85,12 +89,12 @@ const ViewCarPage = (props) => {
             favorite: car.favorite,
           }}
         >
-          {({ values, setFieldValue }) => (
+          {({ values, setFieldValue, handleReset }) => (
             <Form>
               <div
                 className="detailsCarHeader"
                 style={{
-                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(${values.file})`,
+                  backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(${background})`,
                 }}
               >
                 <div className="detailsCarControls">
@@ -103,7 +107,10 @@ const ViewCarPage = (props) => {
                     ) : (
                       <>
                         <MdClose
-                          onClick={() => setShowEdit(false)}
+                          onClick={() => {
+                            handleReset();
+                            setShowEdit(false);
+                          }}
                           className="btnCancelEdit"
                         />
                         <MdDone
