@@ -478,6 +478,7 @@ input[type="checkbox"] {
 
 .detailsCarDescription .inputEditDescription {
   font-weight: bold;
+  font-size: 1.1rem;
   color: #6c737a;
   border: none;
   outline: none;
@@ -557,7 +558,7 @@ input[type="checkbox"] {
 }
 
 .button:disabled {
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 /* Buttons Config -  End */
@@ -567,7 +568,6 @@ input[type="checkbox"] {
 .field {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 }
@@ -580,16 +580,31 @@ input[type="checkbox"] {
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
 }
 
-.field input {
-  flex: 1;
-  height: 2rem;
-  padding: 0.3rem 0.7rem;
+.field input,
+.inputAddDescription {
+  height: 2.5rem;
+  width: calc(100% - 1.4rem);
+  padding: 0 0.7rem;
   color: #343a40;
   background: #fff;
   border: thin solid #dce5e8;
   border-radius: 0.35rem;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px;
   outline: none;
+}
+
+.inputAddFilenameImage {
+  flex: 1;
+}
+
+.inputAddDescription {
+  height: 4.5rem;
+  padding: 0.6rem 0.7rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 3px 3px;
+}
+
+.field div {
+  flex: 1;
 }
 
 .field.upload,
@@ -605,6 +620,7 @@ input[type="checkbox"] {
   flex: 1;
   height: auto;
   background: transparent;
+  width: max-content;
 }
 .field.upload {
   display: flex;
@@ -638,21 +654,6 @@ label.labelUpload {
 }
 
 /* Forms Config -  End */
-
-.inputAddFilenameImage {
-  flex: 1;
-}
-
-.inputAddDescription {
-  flex: 1;
-  padding: 0.3rem 0.7rem;
-  color: #343a40;
-  background: #fff;
-  border: thin solid #dce5e8;
-  border-radius: 0.35rem;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 3px;
-  outline: none;
-}
 
 .hidden {
   display: none !important;

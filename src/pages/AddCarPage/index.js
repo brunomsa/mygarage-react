@@ -44,6 +44,16 @@ const AddCarPage = (props) => {
             engine: Yup.string()
               .max(11, "O número máximo de caracteres é 11")
               .required("Campo obrigatório"),
+            fuel: Yup.string().max(11, "O número máximo de caracteres é 11"),
+            power: Yup.string().max(11, "O número máximo de caracteres é 11"),
+            traction: Yup.string().max(
+              11,
+              "O número máximo de caracteres é 11"
+            ),
+            description: Yup.string().max(
+              11,
+              "O número máximo de caracteres é 11"
+            ),
           })}
         >
           {({ values, setFieldValue, isValid }) => (
@@ -100,24 +110,45 @@ const AddCarPage = (props) => {
               </div>
               <div className="field">
                 <label htmlFor="fuel">Combustível:</label>
-                <Field id="fuel" name="fuel" autoComplete="off" />
+                <div>
+                  <Field id="fuel" name="fuel" autoComplete="off" />
+                  <ErrorMessage name="fuel">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="power">Potência:</label>
-                <Field id="power" name="power" autoComplete="off" />
+                <div>
+                  <Field id="power" name="power" autoComplete="off" />
+                  <ErrorMessage name="power">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="traction">Tração:</label>
-                <Field id="traction" name="traction" autoComplete="off" />
+                <div>
+                  <Field id="traction" name="traction" autoComplete="off" />
+                  <ErrorMessage name="traction">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field">
                 <label htmlFor="description">Descrição:</label>
-                <Field
-                  name="description"
-                  as="textarea"
-                  rows="3"
-                  className="inputAddDescription"
-                />
+                <div>
+                  <Field
+                    id="description"
+                    name="description"
+                    as="textarea"
+                    rows="3"
+                    className="inputAddDescription"
+                  />
+                  <ErrorMessage name="description">
+                    {(msg) => <div className="errorMsg">{msg}</div>}
+                  </ErrorMessage>
+                </div>
               </div>
               <div className="field upload">
                 <label className="labelImage" htmlFor="image">
@@ -147,7 +178,7 @@ const AddCarPage = (props) => {
               </div>
               <div className="field fav end">
                 <label htmlFor="favorite">Marcar como favorito:</label>
-                <Field name="favorite" type="checkbox" />
+                <Field id="favorite" name="favorite" type="checkbox" />
               </div>
               <div className="buttonGroup">
                 <Link to="/" className="button">
