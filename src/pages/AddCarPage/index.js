@@ -30,7 +30,7 @@ const AddCarPage = (props) => {
           }}
           validationSchema={Yup.object({
             name: Yup.string()
-              .max(15, "O número máximo de caracteres é 19")
+              .max(19, "O número máximo de caracteres é 19")
               .required("Campo obrigatório"),
             year: Yup.string()
               .max(4, "O número máximo de caracteres é 4")
