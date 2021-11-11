@@ -292,6 +292,15 @@ const ViewCarPage = (props) => {
                         <MdFileUpload className="iconUpload" />
                       </label>
                       <label htmlFor="image">{values.filename}</label>
+                      {values.filename && (
+                        <MdClose
+                          className="iconDeleteUpload"
+                          onClick={() => {
+                            setFieldValue("image", undefined);
+                            setFieldValue("filename", "");
+                          }}
+                        />
+                      )}
                     </div>
                   </div>
                 )}

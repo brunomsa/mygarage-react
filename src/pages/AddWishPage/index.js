@@ -1,5 +1,5 @@
 import React from "react";
-import { MdFileUpload } from "react-icons/md";
+import { MdClose, MdFileUpload } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -18,7 +18,7 @@ const AddWishPage = (props) => {
             name: "",
             year: "",
             price: "",
-            image: null,
+            image: undefined,
             filename: "",
           }}
           validationSchema={Yup.object({
@@ -91,6 +91,15 @@ const AddWishPage = (props) => {
                   <label htmlFor="image" className="inputAddFilenameImage">
                     {values.filename}
                   </label>
+                  {values.filename && (
+                    <MdClose
+                      className="iconDeleteUpload"
+                      onClick={() => {
+                        setFieldValue("image", undefined);
+                        setFieldValue("filename", "");
+                      }}
+                    />
+                  )}
                 </div>
               </div>
               <div className="buttonGroup">

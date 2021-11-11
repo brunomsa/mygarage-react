@@ -593,8 +593,8 @@ input[type="checkbox"] {
   outline: none;
 }
 
-.inputAddFilenameImage {
-  flex: 1;
+.field .inputAddFilenameImage {
+  flex: 0.1;
 }
 
 .inputAddDescription {
@@ -645,6 +645,10 @@ label.labelUpload {
 .iconUpload {
   font-size: 1.5rem;
   margin-right: 0.5rem;
+}
+
+.iconDeleteUpload {
+  margin-left: 1rem;
 }
 
 .errorMsg {
