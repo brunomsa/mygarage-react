@@ -51,8 +51,8 @@ const AddCarPage = (props) => {
               "O número máximo de caracteres é 11"
             ),
             description: Yup.string().max(
-              11,
-              "O número máximo de caracteres é 11"
+              40,
+              "O número máximo de caracteres é 40"
             ),
           })}
         >

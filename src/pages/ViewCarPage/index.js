@@ -104,6 +104,16 @@ const ViewCarPage = (props) => {
             engine: Yup.string()
               .max(11, "O número máximo de caracteres é 11")
               .required("Campo obrigatório"),
+            fuel: Yup.string().max(11, "O número máximo de caracteres é 11"),
+            power: Yup.string().max(11, "O número máximo de caracteres é 11"),
+            traction: Yup.string().max(
+              11,
+              "O número máximo de caracteres é 11"
+            ),
+            description: Yup.string().max(
+              40,
+              "O número máximo de caracteres é 40"
+            ),
           })}
         >
           {({ values, setFieldValue, handleReset, isValid }) => (
