@@ -61,7 +61,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="name">Nome:</label>
                 <div>
-                  <Field id="name" name="name" autoComplete="off" />
+                  <Field
+                    id="name"
+                    name="name"
+                    placeholder="BMW"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="name">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -74,6 +79,7 @@ const AddCarPage = (props) => {
                     id="year"
                     name="year"
                     type="number"
+                    placeholder="2021"
                     autoComplete="off"
                   />
                   <ErrorMessage name="year">
@@ -84,7 +90,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="km">Km:</label>
                 <div>
-                  <Field id="km" name="km" autoComplete="off" />
+                  <Field
+                    id="km"
+                    name="km"
+                    placeholder="60.000km"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="km">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -93,7 +104,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="march">Câmbio:</label>
                 <div>
-                  <Field id="march" name="march" autoComplete="off" />
+                  <Field
+                    id="march"
+                    name="march"
+                    placeholder="Manual"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="march">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -102,7 +118,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="engine">Motor:</label>
                 <div>
-                  <Field id="engine" name="engine" autoComplete="off" />
+                  <Field
+                    id="engine"
+                    name="engine"
+                    placeholder="2.0"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="engine">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -111,7 +132,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="fuel">Combustível:</label>
                 <div>
-                  <Field id="fuel" name="fuel" autoComplete="off" />
+                  <Field
+                    id="fuel"
+                    name="fuel"
+                    placeholder="Gasolina"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="fuel">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -120,7 +146,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="power">Potência:</label>
                 <div>
-                  <Field id="power" name="power" autoComplete="off" />
+                  <Field
+                    id="power"
+                    name="power"
+                    placeholder="400CV"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="power">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -129,7 +160,12 @@ const AddCarPage = (props) => {
               <div className="field">
                 <label htmlFor="traction">Tração:</label>
                 <div>
-                  <Field id="traction" name="traction" autoComplete="off" />
+                  <Field
+                    id="traction"
+                    name="traction"
+                    placeholder="Traseira"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="traction">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -142,6 +178,7 @@ const AddCarPage = (props) => {
                     id="description"
                     name="description"
                     as="textarea"
+                    placeholder="Carro para viagem"
                     rows="3"
                     className="inputAddDescription"
                   />

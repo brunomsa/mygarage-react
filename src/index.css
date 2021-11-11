@@ -74,6 +74,10 @@ input[type="checkbox"] {
     contrast(88%);
 }
 
+::placeholder {
+  opacity: 0.4;
+}
+
 /* Main Config -  End */
 
 /* Header Config -  Start */

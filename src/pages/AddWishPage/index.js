@@ -30,7 +30,11 @@ const AddWishPage = (props) => {
               .required("Required"),
             price: Yup.string()
               .max(15, "O número máximo de caracteres é 15")
-              .required("Required"),
+              .required("Required")
+              .matches(
+                /^\s*(?:[1-9]\d{0,2}(?:\.\d{3})*|0),\d{2}$/,
+                "Formato de preço inválido! (Ex.:1.000.000,00)"
+              ),
           })}
         >
           {({ values, setFieldValue, isValid }) => (
@@ -38,7 +42,12 @@ const AddWishPage = (props) => {
               <div className="field">
                 <label htmlFor="name">Nome:</label>
                 <div>
-                  <Field id="name" name="name" autoComplete="off" />
+                  <Field
+                    id="name"
+                    name="name"
+                    placeholder="BMW"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="name">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
@@ -51,6 +60,7 @@ const AddWishPage = (props) => {
                     id="year"
                     name="year"
                     type="number"
+                    placeholder="2021"
                     autoComplete="off"
                   />
                   <ErrorMessage name="year">
@@ -61,7 +71,12 @@ const AddWishPage = (props) => {
               <div className="field">
                 <label htmlFor="price">Price:</label>
                 <div>
-                  <Field id="price" name="price" autoComplete="off" />
+                  <Field
+                    id="price"
+                    name="price"
+                    placeholder="50.000,00"
+                    autoComplete="off"
+                  />
                   <ErrorMessage name="price">
                     {(msg) => <div className="errorMsg">{msg}</div>}
                   </ErrorMessage>
